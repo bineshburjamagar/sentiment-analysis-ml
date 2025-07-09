@@ -7,29 +7,28 @@ try:
     model = joblib.load("reddit_sentiment_model.pkl")
     vectorizer = joblib.load("reddit_vectorizer.pkl")
 except FileNotFoundError:
-    st.error("Model or vectorizer file not found. Make sure the .pkl files are in the correct path.")
+    st.error("Error path")
     st.stop()
 
 def clean_text(text):
-    # Add more preprocessing as needed (e.g., removing punctuation, stopwords)
     return text.lower()
 
 st.title("Sentiment Predictor")
-st.write("Enter your feeling so that i can analyze XD")
+st.write("Enter your feeling so that i can analyze.")
 
-user_input = st.text_area("Enter  here")
+user_input = st.text_area("Enter here")
 
-if st.button("Analyze yoooo"):
+if st.button("Analyze"):
     if not user_input.strip():
-        st.warning("Please enter a comment before analyzing.")
+        st.warning("Please enter a text before analyzing.")
     else:
         cleaned = clean_text(user_input)
         vec = vectorizer.transform([cleaned])
         pred = model.predict(vec)[0]
         sentiment_map = {
-            1: "Thikchaaa 😊",
-            0: "Thikei Matra 😐",
-            -1: "Galat bhawanaaaa lmao 😠"
+            1: "Positive 😊",
+            0: "Neutral 😐",
+            -1: "Negative 😠"
         }
         sentiment = sentiment_map.get(pred, "Unknown 🤔")
         st.success(f"Sentiment: **{sentiment}**")
