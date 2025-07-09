@@ -1,5 +1,5 @@
 
-# 🔍 Sentiment Analysis
+#  Sentiment Analysis
 
 A machine learning project to classify Reddit comments as **Positive (1)**, **Neutral (0)**, or **Negative (-1)**.
 
